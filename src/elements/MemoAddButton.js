@@ -24,10 +24,19 @@ const styles = StyleSheet.create({
   }
 })
 
-const MemoAddButton = () =>{
+const MemoAddButton = (props) =>{
+  const {style,color} = props 
+
+  let bgColor = "#E31676";
+  let textColor = "#fff";
+  
+  if (color === "white"){
+    bgColor = "#fff";
+    textColor = "#E31676";
+  }
   return (
-    <View　style={styles.memoAdd}>
-      <Text　style={styles.memoAddButton}>＋</Text>
+    <View　style={[styles.memoAdd,style,{backgroundColor: bgColor}]}>
+      <Text　style={[styles.memoAddButton,{color: textColor}]}>＋</Text>
     </View>
   )
 }

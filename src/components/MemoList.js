@@ -5,10 +5,10 @@ const styles = StyleSheet.create({
   memoList: {
     width: "100%",
     flex: 1,
-    paddingTop: 78,
   },
   memoListItem: {
     padding: 16,
+    width: "100%",
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
     backgroundColor: '#fff',
