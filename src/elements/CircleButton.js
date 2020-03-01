@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
   memoAdd:{
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const MemoAddButton = (props) =>{
+const CircleButton = (props) =>{
   const {style,color} = props 
 
   let bgColor = "#E31676";
@@ -34,11 +35,15 @@ const MemoAddButton = (props) =>{
     bgColor = "#fff";
     textColor = "#E31676";
   }
+
+  let name = props.name
   return (
     <View　style={[styles.memoAdd,style,{backgroundColor: bgColor}]}>
-      <Text　style={[styles.memoAddButton,{color: textColor}]}>＋</Text>
+      <Text　style={[styles.memoAddButton,{color: textColor}]}>
+        <FontAwesome name={name} size={25}/>
+      </Text>
     </View>
   )
 }
 
-export default MemoAddButton ;
+export default CircleButton ;

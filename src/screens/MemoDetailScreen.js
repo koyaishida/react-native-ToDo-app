@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View,Text } from 'react-native';
 import MemoList from "../components/MemoList"
-import MemoAddButton from "../elements/MemoAddButton"
+import CircleButton from "../elements/CircleButton"
 
 const styles = StyleSheet.create({
   container: {
@@ -54,7 +54,7 @@ const MemoDetailScreen = () => {
         <Text>content</Text>
       </View>
       
-      <MemoAddButton style={styles.editButton} color={"white"}/>
+      <CircleButton style={styles.editButton} color={"white"} name={"edit"}/>
     </View>
   );
 }
