@@ -43,19 +43,26 @@ const styles = StyleSheet.create({
 
 const LoginScreen = (props) => {
 
-  const [email,setEmail] =useState("Email Address")
-  const [password,setPassword] =useState("Password")
+  const [email,setEmail] =useState()
+  const [password,setPassword] =useState()
+
+  
 
   return (
     <View style={styles.container}>
       <Text　style={styles.title}>
         ログイン
       </Text>
-      <TextInput multiline style={styles.input} value={email} onChange={e => setEmail(e.target.value)}/>
-      <TextInput multiline style={styles.input} value={password} placeholder="Password" onChange={e => setPassword(e.target.value)}/>
-      <TouchableHighlight　style={styles.button} underlayColor="#C70F66" onPress={()=>props.navigation.navigate("MemoList")}>
+
+      <TextInput multiline style={styles.input} value={email} placeholder="Email" 
+      onChange={e => setEmail(e.target.value)} autoCapitalize="none" autoCorrect={false}/>
+
+      <TextInput multiline style={styles.input} value={password} placeholder="Password" onChange={e => setPassword(e.target.value)} autoCapitalize="none" autoCorrect={false}/>
+
+      <TouchableHighlight　style={styles.button} underlayColor="#C70F66" onPress={handleSubmit}>
         <Text style={styles.buttonTitle}>ログインする</Text>
       </TouchableHighlight>
+
     </View>
   );
 }
