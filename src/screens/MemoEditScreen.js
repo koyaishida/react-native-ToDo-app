@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
 });
 
 
-const MemoListScreen = () => {
+const MemoEditScreen = (props) => {
   return (
     <View style={styles.container}>
       <TextInput multiline style={styles.memoEditInput} value="test"/>
-      <CircleButton name={"check"}/>
+      <CircleButton name={"check"} onPress={()=>{props.navigation.navigate("MemoList")}}/>
     </View>
   );
 }
 
-export default MemoListScreen
+export default MemoEditScreen

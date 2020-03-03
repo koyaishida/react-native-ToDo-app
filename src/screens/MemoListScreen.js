@@ -15,11 +15,11 @@ const styles = StyleSheet.create({
 });
 
 
-const MemoListScreen = () => {
+const MemoListScreen = (props) => {
   return (
     <View style={styles.container}>
-      <MemoList />
-      <CircleButton name={"plus"}/>
+      <MemoList onPress={()=>{props.navigation.navigate("MemoDetail")}}/>
+      <CircleButton name={"plus"} onPress={()=>{props.navigation.navigate("MemoEdit")}}/>
     </View>
   );
 }

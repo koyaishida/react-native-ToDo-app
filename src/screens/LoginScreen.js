@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState}from 'react';
 import { StyleSheet, View,Text, TextInput, TouchableHighlight } from 'react-native';
 import CircleButton from "../elements/CircleButton"
 
@@ -41,15 +41,19 @@ const styles = StyleSheet.create({
 });
 
 
-const LoginScreen = () => {
+const LoginScreen = (props) => {
+
+  const [email,setEmail] =useState("Email Address")
+  const [password,setPassword] =useState("Password")
+
   return (
     <View style={styles.container}>
       <Text　style={styles.title}>
         ログイン
       </Text>
-      <TextInput multiline style={styles.input} value="Email Address"/>
-      <TextInput multiline style={styles.input} value="Password"/>
-      <TouchableHighlight　style={styles.button} underlayColor="#C70F66" onPress={()=>{}}>
+      <TextInput multiline style={styles.input} value={email} onChange={e => setEmail(e.target.value)}/>
+      <TextInput multiline style={styles.input} value={password} placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+      <TouchableHighlight　style={styles.button} underlayColor="#C70F66" onPress={()=>props.navigation.navigate("MemoList")}>
         <Text style={styles.buttonTitle}>ログインする</Text>
       </TouchableHighlight>
     </View>

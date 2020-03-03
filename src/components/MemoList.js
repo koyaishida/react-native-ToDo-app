@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
   memoList: {
@@ -23,13 +23,15 @@ const styles = StyleSheet.create({
   },
 })
 
-const MemoList = () =>{
+const MemoList = ({onPress}) =>{
   return (
-    <View style={styles.memoList}>
-      <View style={styles.memoListItem}>
-        <Text style={styles.memoTitle}>タイトルタイトルタイトル</Text>
-        <Text style={styles.memoDate}>日付1111</Text>
-      </View>
+    <View style={styles.memoList} >
+        <TouchableHighlight onPress={onPress}>
+         <View  style={styles.memoListItem}>
+            <Text style={styles.memoTitle}>タイトルタイトルタイトル</Text>
+            <Text style={styles.memoDate}>日付1111</Text>
+         </View> 
+      </TouchableHighlight>
     </View>
   )
 }

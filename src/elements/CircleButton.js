@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,TouchableHighlight} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 })
 
 const CircleButton = (props) =>{
-  const {style,color} = props 
+  const {style,color,onPress} = props 
 
   let bgColor = "#E31676";
   let textColor = "#fff";
@@ -35,14 +35,18 @@ const CircleButton = (props) =>{
     bgColor = "#fff";
     textColor = "#E31676";
   }
-
+  
   let name = props.name
+
   return (
-    <View　style={[styles.memoAdd,style,{backgroundColor: bgColor}]}>
+  <TouchableHighlight 　style={[styles.memoAdd,style,{backgroundColor: bgColor}]} onPress={onPress} underlayColor="transparent">
+    <View>
       <Text　style={[styles.memoAddButton,{color: textColor}]}>
         <FontAwesome name={name} size={25}/>
       </Text>
     </View>
+  </TouchableHighlight>
+    
   )
 }
 

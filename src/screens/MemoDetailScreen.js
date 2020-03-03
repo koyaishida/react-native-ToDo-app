@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 });
 
 
-const MemoDetailScreen = () => {
+const MemoDetailScreen = (props) => {
   return (
     <View style={styles.container}>
 
@@ -54,7 +54,7 @@ const MemoDetailScreen = () => {
         <Text>content</Text>
       </View>
       
-      <CircleButton style={styles.editButton} color={"white"} name={"edit"}/>
+      <CircleButton style={styles.editButton} color={"white"} name={"edit"} onPress={()=>{props.navigation.navigate("MemoEdit")}}/>
     </View>
   );
 }
