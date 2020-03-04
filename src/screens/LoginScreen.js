@@ -1,6 +1,6 @@
 import React, {useState}from 'react';
 import { StyleSheet, View,Text, TextInput, TouchableHighlight } from 'react-native';
-import CircleButton from "../elements/CircleButton"
+import firebase from "firebase"
 
 const styles = StyleSheet.create({
   container: {
@@ -46,6 +46,19 @@ const LoginScreen = (props) => {
   const [email,setEmail] =useState()
   const [password,setPassword] =useState()
 
+  const handleSubmit = () => {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(()=>{
+        console.log("success")
+        props.navigation.navigate("MemoList")
+      })
+      .catch((error)=>{
+        console.log(error)
+        console.log("error")
+      })
+    
+  }
+
   
 
   return (
@@ -54,12 +67,14 @@ const LoginScreen = (props) => {
         ログイン
       </Text>
 
-      <TextInput multiline style={styles.input} value={email} placeholder="Email" 
-      onChange={e => setEmail(e.target.value)} autoCapitalize="none" autoCorrect={false}/>
+      <TextInput style={styles.input} value={email} placeholder="Email" 
+      onChangeText={text => setEmail(text)} autoCapitalize="none" autoCorrect={false}/>
 
-      <TextInput multiline style={styles.input} value={password} placeholder="Password" onChange={e => setPassword(e.target.value)} autoCapitalize="none" autoCorrect={false}/>
+      {/* onChangeではなくonChangeText */}
+      <TextInput style={styles.input} value={password} placeholder="Password" onChangeText={text => setPassword(text)} autoCapitalize="none" autoCorrect={false} secureTextEntry={true}/>
 
-      <TouchableHighlight　style={styles.button} underlayColor="#C70F66" onPress={handleSubmit}>
+      <TouchableHighlight　style={styles.button} underlayColor="#C70F66"
+        onPress={handleSubmit}>
         <Text style={styles.buttonTitle}>ログインする</Text>
       </TouchableHighlight>
 
