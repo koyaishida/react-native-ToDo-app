@@ -11,6 +11,8 @@ import SignupScreen from "./src/screens/SignupScreen"
 import firebase from "firebase"
 import ENV from "./env.json"
 
+require("firebase/firestore")
+
 const firebaseConfig = {
   apiKey:             ENV.FIREBASE_API_KEY,
   authDomain:         ENV.FIREBASE_AUTH_DOMAIN,
@@ -52,6 +54,17 @@ const  App = createStackNavigator({
   MemoEdit : {
     screen : MemoEditScreen
   },
+},{
+  defaultNavigationOptions: {
+    headerTitle: "Memot",
+    headerStyle: {
+      backgroundColor: '#265366'
+    },
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      color: "#fff",
+    },
+  }
 })
 
 export default createAppContainer(App)

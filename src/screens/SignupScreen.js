@@ -47,7 +47,7 @@ const SignupScreen = (props) => {
   const [password,setPassword] =useState("")
 
   // signup function
-  const handleSubmit = () => {
+  const handleSignup = () => {
     
 
     firebase.auth().createUserWithEmailAndPassword(email,password)
@@ -72,7 +72,7 @@ const SignupScreen = (props) => {
       {/* onChangeではなくonChangeText */}
       <TextInput style={styles.input} value={password} placeholder="Password" onChangeText={text => setPassword(text)} autoCapitalize="none" autoCorrect={false} secureTextEntry={true}/>
       
-      <TouchableHighlight style={styles.button} underlayColor="#C70F66" onPress={handleSubmit}>
+      <TouchableHighlight style={styles.button} underlayColor="#C70F66" onPress={handleSignup}>
         <Text style={styles.buttonTitle}>送信する</Text>
       </TouchableHighlight>
 

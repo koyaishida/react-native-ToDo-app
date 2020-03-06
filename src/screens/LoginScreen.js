@@ -46,11 +46,12 @@ const LoginScreen = (props) => {
   const [email,setEmail] =useState()
   const [password,setPassword] =useState()
 
-  const handleSubmit = () => {
+  const handleLogin = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(()=>{
+      .then((user)=>{
         console.log("success")
-        props.navigation.navigate("MemoList")
+        console.log(user)
+        props.navigation.navigate("MemoList",{currentUser : user})
       })
       .catch((error)=>{
         console.log(error)
@@ -58,6 +59,8 @@ const LoginScreen = (props) => {
       })
     
   }
+
+  
 
   
 
@@ -74,7 +77,7 @@ const LoginScreen = (props) => {
       <TextInput style={styles.input} value={password} placeholder="Password" onChangeText={text => setPassword(text)} autoCapitalize="none" autoCorrect={false} secureTextEntry={true}/>
 
       <TouchableHighlight　style={styles.button} underlayColor="#C70F66"
-        onPress={handleSubmit}>
+        onPress={handleLogin}>
         <Text style={styles.buttonTitle}>ログインする</Text>
       </TouchableHighlight>
 
