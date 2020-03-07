@@ -21,9 +21,6 @@ const styles = StyleSheet.create({
 
 // onPress={()=>{props.navigation.navigate("MemoList")}
 const MemoEditScreen = (props) => {
-
-  
-
   return (
     <View style={styles.container}>
       <TextInput multiline style={styles.memoEditInput} value="test"/>

@@ -6,6 +6,7 @@ import AppBar from "./src/components/AppBar"
 import MemoListScreen from "./src/screens/MemoListScreen"
 import MemoDetailScreen from "./src/screens/MemoDetailScreen"
 import MemoEditScreen from "./src/screens/MemoEditScreen"
+import MemoAddScreen from "./src/screens/MemoAddScreen"
 import LoginScreen from "./src/screens/LoginScreen"
 import SignupScreen from "./src/screens/SignupScreen"
 import firebase from "firebase"
@@ -48,11 +49,15 @@ const  App = createStackNavigator({
   MemoList : {
     screen : MemoListScreen
   } ,
+  
   MemoDetail : {
     screen : MemoDetailScreen
   } ,
   MemoEdit : {
     screen : MemoEditScreen
+  },
+  MemoAdd : {
+    screen : MemoAddScreen
   },
 },{
   defaultNavigationOptions: {

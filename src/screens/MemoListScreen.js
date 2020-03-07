@@ -17,24 +17,12 @@ const styles = StyleSheet.create({
 
 
 const MemoListScreen = (props) => {
+
   const handleAdd = () =>{
     const {params} = props.navigation.state
-    console.log(params)
-    firebase.firestore()
-    const db = firebase.firestore();
-    db.collection(`users/${params.currentUser.user.uid}/memos`).add({
-      title: "test444",    
-      content: "Lovelace",
-      date: 1815
-    })
-
-    .then((docRef)=> {
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error)=>{
-      console.error("Error adding document: ", error);
-    });
+    props.navigation.navigate("MemoAdd",{currentUser : params.currentUser})
   }
+
 
   return (
     <View style={styles.container}>
