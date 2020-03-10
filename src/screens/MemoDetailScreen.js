@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import { StyleSheet, View,Text } from 'react-native';
 import MemoList from "../components/MemoList"
 import CircleButton from "../elements/CircleButton"
@@ -38,20 +38,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   }
   
-});
+})
 
+const dateToString = (date)=>{
+  const str = date.toDate().toISOString();
+  return str.split("T")[0]
+}
 
 const MemoDetailScreen = (props) => {
+  const {memo} = props.navigation.state.params
+  const [item,setMemo] = useState(memo)
   return (
     <View style={styles.container}>
 
       <View style={styles.memoHeader}>
-        <Text style={styles.headerTitle}>header title</Text>
-        <Text  style={styles.headerDate}>header date</Text>
+        <Text style={styles.headerTitle}>{item.title}</Text>
+        <Text  style={styles.headerDate}>{dateToString(item.date)}</Text>
       </View>
 
       <View style={styles.memoContent}>
-        <Text>content</Text>
+  <Text>{memo.content}</Text>
       </View>
       
       <CircleButton style={styles.editButton} color={"white"} name={"edit"} onPress={()=>{props.navigation.navigate("MemoEdit")}}/>

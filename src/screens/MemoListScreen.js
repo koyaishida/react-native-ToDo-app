@@ -21,6 +21,7 @@ class MemoListScreen extends React.Component {
   state = {
     memoList : []
   }
+  
   componentWillMount(){
     const {currentUser} = firebase.auth();
     const db =firebase.firestore()
@@ -41,6 +42,7 @@ class MemoListScreen extends React.Component {
 
   handleAdd () {
     this.props.navigation.navigate("MemoAdd")
+    
   }
 
   render(){
@@ -48,7 +50,7 @@ class MemoListScreen extends React.Component {
       <View style={styles.container}>
           <MemoList 
             memoList={this.state.memoList}
-            onPress={()=>{this.props.navigation.navigate("MemoDetail")}}/>
+            navigation={this.props.navigation}/>
         <CircleButton name={"plus"} onPress={this.handleAdd.bind(this)}/>
       </View>
     ); 

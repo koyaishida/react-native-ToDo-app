@@ -23,20 +23,25 @@ const styles = StyleSheet.create({
   },
 })
 
+const dateToString = (date)=>{
+  const str = date.toDate().toISOString();
+  return str.split("T")[0]
+}
+
 const  MemoList =(props)=> {
   const renderMemo =({item})=> {
     return(
-      <TouchableHighlight style={styles.memoList} onPress={props.onPress}>
+      <TouchableHighlight style={styles.memoList} onPress={()=>{props.navigation.navigate("MemoDetail",{memo : item})}}>
         <View style={styles.memoListItem}>
           <Text style={styles.memoTitle}>{item.title}</Text>
-          <Text style={styles.memoDate}>テスト</Text>
+          <Text style={styles.memoDate}>{dateToString(item.date)}</Text>
         </View>
       </TouchableHighlight>
     )
   }
   return (
     <View style={styles.memoList}>
-      <FlatList data={props.memoList} renderItem={renderMemo}/>
+      <FlatList data={props.memoList} renderItem={renderMemo.bind(this)}/>
     </View>
   )  
 }
