@@ -43,15 +43,15 @@ const styles = StyleSheet.create({
 
 const LoginScreen = (props) => {
 
-  const [email,setEmail] =useState()
-  const [password,setPassword] =useState()
+  const [email,setEmail] =useState("k.157.2@gmail.com")
+  const [password,setPassword] =useState("koya1572")
 
   const handleLogin = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user)=>{
         console.log("success")
         console.log(user)
-        props.navigation.navigate("MemoList",{currentUser : user})
+        props.navigation.navigate("MemoList")
       })
       .catch((error)=>{
         console.log(error)
@@ -60,13 +60,9 @@ const LoginScreen = (props) => {
     
   }
 
-  
-
-  
-
   return (
     <View style={styles.container}>
-      <Text　style={styles.title}>
+      <Text style={styles.title}>
         ログイン
       </Text>
 

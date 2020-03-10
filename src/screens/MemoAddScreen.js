@@ -32,21 +32,19 @@ const styles = StyleSheet.create({
 // onPress={()=>{props.navigation.navigate("MemoList")}
 const MemoAddScreen = (props) => {
   const [title,setTitle] =useState("")
-  const [body,setBody] =useState("")
+  const [content,setContent] =useState("")
 
   const handleSubmit = () => {
-    const {params} = props.navigation.state
-    console.log(params)
-     firebase.firestore()
      const db = firebase.firestore();
-      db.collection(`users/${params.currentUser.user.uid}/memos`).add({
-        title: {title},    
-        content: {body},
+     const {currentUser} = firebase.auth();
+      db.collection(`users/${currentUser.uid}/memos`).add({
+        title: title,    
+        content: content,
         date: new Date()
       })
 
      .then((user)=> {
-       console.log("Document written with ID: ");
+       console.log(user.id);
        props.navigation.navigate("MemoList")
      })
      .catch((error)=>{
@@ -59,8 +57,8 @@ const MemoAddScreen = (props) => {
       <TextInput multiline style={styles.memoEditTitle} value={title}
        onChangeText={text => setTitle(text)} placeholder="title"/>
 
-      <TextInput multiline style={styles.memoEditBody} value={body}
-       onChangeText={text => setBody(text)}/>
+      <TextInput multiline style={styles.memoEditBody} value={content}
+       onChangeText={text => setContent(text)}/>
       <CircleButton name={"check"} onPress={handleSubmit} placeholder="body"/>
     </View>
   );
