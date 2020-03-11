@@ -28,7 +28,10 @@ const dateToString = (date)=>{
   return str.split("T")[0]
 }
 
+
+
 const  MemoList =(props)=> {
+  
   const renderMemo =({item})=> {
     return(
       <TouchableHighlight style={styles.memoList} onPress={()=>{props.navigation.navigate("MemoDetail",{memo : item})}}>

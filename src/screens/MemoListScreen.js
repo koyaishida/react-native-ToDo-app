@@ -18,32 +18,30 @@ const styles = StyleSheet.create({
 
 class MemoListScreen extends React.Component {
 
+  
   state = {
     memoList : []
   }
-  
+
   componentWillMount(){
     const {currentUser} = firebase.auth();
     const db =firebase.firestore()
     db.collection(`users/${currentUser.uid}/memos`)
       .get()
       .then((querySnapshot)=> {
-        const memoList = [];
+        const memoList =[];
         querySnapshot.forEach((doc)=>{
-          memoList.push({...doc.data(),key : doc.id})
+          memoList.push({...doc.data(),key: doc.id})
         })
+        
       this.setState({memoList})
-    })
+      })
+
       .catch((error)=> {
       console.log(error)
       })
   }
-
-
-  handleAdd () {
-    this.props.navigation.navigate("MemoAdd")
-    
-  }
+  
 
   render(){
     return (
@@ -51,10 +49,10 @@ class MemoListScreen extends React.Component {
           <MemoList 
             memoList={this.state.memoList}
             navigation={this.props.navigation}/>
-        <CircleButton name={"plus"} onPress={this.handleAdd.bind(this)}/>
+        <CircleButton name={"plus"} onPress={()=>{this.props.navigation.navigate("MemoAdd")}}/>
       </View>
     ); 
-  }   
+  } 
 }
 
 export default MemoListScreen

@@ -47,20 +47,20 @@ const dateToString = (date)=>{
 
 const MemoDetailScreen = (props) => {
   const {memo} = props.navigation.state.params
-  const [item,setMemo] = useState(memo)
+  console.log(memo)
   return (
     <View style={styles.container}>
 
       <View style={styles.memoHeader}>
-        <Text style={styles.headerTitle}>{item.title}</Text>
-        <Text  style={styles.headerDate}>{dateToString(item.date)}</Text>
+        <Text style={styles.headerTitle}>{memo.title}</Text>
+        <Text  style={styles.headerDate}>{dateToString(memo.date)}</Text>
       </View>
 
       <View style={styles.memoContent}>
-  <Text>{memo.content}</Text>
+        <Text>{memo.content}</Text>
       </View>
       
-      <CircleButton style={styles.editButton} color={"white"} name={"edit"} onPress={()=>{props.navigation.navigate("MemoEdit")}}/>
+      <CircleButton style={styles.editButton} color={"white"} name={"edit"} onPress={()=>{props.navigation.navigate("MemoEdit",{memo:memo})}}/>
     </View>
   );
 }
