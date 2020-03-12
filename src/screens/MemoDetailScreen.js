@@ -47,7 +47,6 @@ const dateToString = (date)=>{
 
 const MemoDetailScreen = (props) => {
   const {memo} = props.navigation.state.params
-  console.log(memo)
   return (
     <View style={styles.container}>
 

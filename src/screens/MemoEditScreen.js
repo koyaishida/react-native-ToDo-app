@@ -38,13 +38,19 @@ const MemoEditScreen = (props) => {
     console.log("press")
     const {currentUser} = firebase.auth();
     const db = firebase.firestore()
+    const newDate = new Date()
     db.collection(`users/${currentUser.uid}/memos`).doc(key)
     .update({
       title : title,
       content :content,
+      date : newDate,
     })
     .then(()=>{
-      console.log("success")
+      memo.title = title
+      memo.content = content
+      memo.date = newDate
+      console.log(memo.date,"date")
+      props.navigation.navigate("MemoList",{memo})
     })
     .catch((error)=>{
       console.log(error)
