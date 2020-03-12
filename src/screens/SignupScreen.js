@@ -1,6 +1,7 @@
 import React , {useState} from 'react';
 import { StyleSheet, View,Text, TextInput, TouchableHighlight } from 'react-native';
 import firebase from "firebase"
+import { NavigationActions ,StackActions }  from "react-navigation"
 
 const styles = StyleSheet.create({
   container: {
@@ -51,8 +52,18 @@ const SignupScreen = (props) => {
     
 
     firebase.auth().createUserWithEmailAndPassword(email,password)
-    .then((user)=>{
-      props.navigation.navigate("MemoList")
+    .then(()=>{
+      console.log("success")
+
+        const  resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({
+              routeName : "MemoList"
+            }),
+          ]
+        })
+        props.navigation.dispatch(resetAction)
     })
     .catch((error)=>{
       console.log(error)

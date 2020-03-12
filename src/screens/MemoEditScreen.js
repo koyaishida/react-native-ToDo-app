@@ -35,7 +35,6 @@ const MemoEditScreen = (props) => {
   const [key,setKey] = useState(memo.key) 
 
   const handlePress = ()=>{
-    console.log("press")
     const {currentUser} = firebase.auth();
     const db = firebase.firestore()
     const newDate = new Date()
@@ -49,7 +48,6 @@ const MemoEditScreen = (props) => {
       memo.title = title
       memo.content = content
       memo.date = newDate
-      console.log(memo.date,"date")
       props.navigation.navigate("MemoList",{memo})
     })
     .catch((error)=>{

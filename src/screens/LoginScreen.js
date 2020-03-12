@@ -1,6 +1,8 @@
 import React, {useState}from 'react';
 import { StyleSheet, View,Text, TextInput, TouchableHighlight } from 'react-native';
 import firebase from "firebase"
+import { NavigationActions ,StackActions }  from "react-navigation"
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,6 +38,10 @@ const styles = StyleSheet.create({
   buttonTitle: {
     fontSize:20,
     color: "#fff",
+  },
+  toSignup :{
+    marginTop: 10,
+    alignSelf: "center"
   }
   
 });
@@ -48,10 +54,18 @@ const LoginScreen = (props) => {
 
   const handleLogin = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((user)=>{
+      .then(()=>{
         console.log("success")
-        console.log(user)
-        props.navigation.navigate("MemoList")
+
+        const  resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({
+              routeName : "MemoList"
+            }),
+          ]
+        })
+        props.navigation.dispatch(resetAction)
       })
       .catch((error)=>{
         console.log(error)
@@ -59,6 +73,9 @@ const LoginScreen = (props) => {
       })
     
   }
+  const handleSignup = ()=>[
+    props.navigation.navigate("Signup")
+  ]
 
   return (
     <View style={styles.container}>
@@ -72,10 +89,15 @@ const LoginScreen = (props) => {
       {/* onChangeではなくonChangeText */}
       <TextInput style={styles.input} value={password} placeholder="Password" onChangeText={text => setPassword(text)} autoCapitalize="none" autoCorrect={false} secureTextEntry={true}/>
 
-      <TouchableHighlight　style={styles.button} underlayColor="#C70F66"
+      <TouchableHighlight style={styles.button} underlayColor="#C70F66"
         onPress={handleLogin}>
         <Text style={styles.buttonTitle}>ログインする</Text>
       </TouchableHighlight>
+      <TouchableOpacity  style={styles.toSignup} onPress={handleSignup}>
+        <Text>
+          メンバー登録する
+        </Text>
+      </TouchableOpacity>
 
     </View>
   );

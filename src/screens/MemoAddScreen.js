@@ -42,9 +42,7 @@ const MemoAddScreen = (props) => {
         content: content,
         date: new Date()
       })
-
-     .then((user)=> {
-       console.log(user.id);
+     .then(()=> {
        props.navigation.navigate("MemoList")
      })
      .catch((error)=>{
